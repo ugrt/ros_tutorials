@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+  gazebo_docker_container:
+    build:
+      context: .
+      dockerfile: dockerfile
+    network_mode: host
+    user: ${UID}:${GID}
+    environment:
+      # Enviroment Varibles to get the display to work
+      - "DISPLAY"
+      - "QT_X11_NO_MITSHM=1"
+      - "XAUTHORITY=/tmp/.docker.xauth"
+      - ROS_DOMAIN_ID=1
+    volumes:
+      # Volumes for getting the display to work
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/shadow:/etc/shadow:ro
+      - /etc/sudoers:/etc/sudoers:ro
+      - /etc/sudoers.d:/etc/sudoers.d:ro
+      - /home/${USER}:/home/${USER}:rw
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: ros2 launch turtlebot4_ignition_bringup ignition.launch.py slam:=sync nav2:=true rviz:=true
