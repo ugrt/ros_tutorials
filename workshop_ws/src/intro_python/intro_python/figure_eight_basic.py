@@ -7,7 +7,6 @@ from geometry_msgs.msg import Twist
 class FigureEight(Node):
     
     def __init__(self):
-        # super().__init__('figure_eight')
         super().__init__()
         
         self.cmd_vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
