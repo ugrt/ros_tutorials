@@ -70,6 +70,9 @@ Some things are still in ROS1, however most of the same concepts still exist
 http://wiki.ros.org/ROS/Tutorials
 Given that ROS1 is End of Life in 2025, we are not actively supporting this one, except for edge cases.
 
+Here is a video Tutorial if you are interested as well
+- https://www.youtube.com/watch?v=wfDJAYTMTdk
+
 # Docker 
 Docker containers are used for both deployment and development. Understanding what is happening under the hood along with how to write your own makes things much easier
 The following link is a tutorial on what is docker is, and how to write dockerfiles
